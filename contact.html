@@ -1,20 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Contact Us – Nonprofit Name</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Contact Nonprofit Name for inquiries, partnerships, volunteering, or support.">
-  <link rel="stylesheet" href="assets/styles.css">
+<meta charset="UTF-8">
+<title>Contact Us – Nonprofit Name</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* Same inline CSS as index.html for consistency */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #ffffff;
+  color: #222;
+  line-height: 1.6;
+}
+:root {
+  --primary: #0b6efd;
+  --primary-dark: #084298;
+  --accent: #f4b41a;
+  --bg: #f7f7f9;
+  --muted: #6c757d;
+  --radius: 8px;
+  --max-width: 1100px;
+}
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  padding: 1rem 1.5rem;
+  color: white;
+}
+.nav {
+  max-width: var(--max-width);
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.brand-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: white;
+  object-fit: cover;
+}
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+}
+.nav-links a {
+  color: #e9f2ff;
+  font-weight: 500;
+  text-decoration: none;
+}
+.nav-cta {
+  background: var(--accent);
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  color: #222;
+  font-weight: 600;
+  text-decoration: none;
+}
+.section {
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.section-lead {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  border: 1px solid #ced4da;
+}
+.btn-primary {
+  background: var(--accent);
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.form-status {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+.form-status.success { color: green; }
+.form-status.error { color: red; }
+footer {
+  background: #111827;
+  color: #d1d5db;
+  padding: 2rem 1.5rem;
+}
+.footer-inner {
+  max-width: var(--max-width);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2rem;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+}
+.social-links a {
+  display: block;
+  color: #d1d5db;
+  margin-bottom: 0.4rem;
+  text-decoration: none;
+}
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="nav">
     <div class="brand">
-      <img src="assets/logo.png" class="brand-logo" alt="Nonprofit Logo">
+      <img src="assets/logo.png" class="brand-logo">
       <div>
         <div>Nonprofit Name</div>
         <small>Your mission tagline here</small>
@@ -33,114 +158,5 @@
   </div>
 </header>
 
-<!-- CONTACT PAGE CONTENT -->
-<main class="contact-page">
-  <section class="section">
-    <h1>Contact Us</h1>
-    <p class="section-lead">
-      We’d love to hear from you. Use the form below and our team will respond shortly.
-    </p>
-
-    <form id="contactForm" class="contact-form">
-      <label for="name">Name</label>
-      <input id="name" type="text" name="name" required>
-
-      <label for="email">Email</label>
-      <input id="email" type="email" name="email" required>
-
-      <label for="subject">Subject</label>
-      <input id="subject" type="text" name="subject" required>
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" required></textarea>
-
-      <button type="submit" class="btn-primary">Send Message</button>
-    </form>
-
-    <div id="formStatus" class="form-status"></div>
-  </section>
-</main>
-
-<!-- CONTACT FORM SCRIPT -->
-<script>
-  document.getElementById("contactForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const form = e.target;
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      subject: form.subject.value,
-      message: form.message.value
-    };
-
-    const status = document.getElementById("formStatus");
-    status.textContent = "Sending...";
-    status.className = "form-status";
-
-    try {
-      const response = await fetch("https://YOUR-AZURE-FUNCTION-URL/api/sendEmail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-
-      if (response.ok) {
-        status.textContent = "Thank you! Your message has been sent.";
-        status.classList.add("success");
-        form.reset();
-      } else {
-        status.textContent = "Something went wrong. Please try again later.";
-        status.classList.add("error");
-      }
-    } catch (err) {
-      status.textContent = "Unable to send message. Please check your connection.";
-      status.classList.add("error");
-    }
-  });
-</script>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-
-    <div class="footer-left">
-      <h3>Nonprofit Name</h3>
-      <p>123 Hope Street<br>
-      Calgary, AB, Canada</p>
-
-      <p><strong>Email:</strong> info@yournonprofit.org<br>
-      <strong>Phone:</strong> +1 (403) 555‑1234</p>
-    </div>
-
-    <div class="footer-center">
-      <h4>Connect with us</h4>
-      <div class="social-links">
-        <a href="https://facebook.com/yourpage" target="_blank">Facebook</a>
-        <a href="https://twitter.com/yourpage" target="_blank">Twitter</a>
-        <a href="https://instagram.com/yourpage" target="_blank">Instagram</a>
-        <a href="https://linkedin.com/company/yourpage" target="_blank">LinkedIn</a>
-      </div>
-    </div>
-
-    <div class="footer-right">
-      <h4>Quick links</h4>
-      <a href="contact.html">Contact Us</a><br>
-      <a href="#">Financials</a><br>
-      <a href="#">Annual Report</a><br>
-      <a href="#">Privacy Policy</a>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    © <span id="year"></span> Nonprofit Name — Registered Charity #000000
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</footer>
-
-</body>
-</html>
+<main>
+  <section class="

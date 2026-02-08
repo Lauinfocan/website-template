@@ -1,20 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Nonprofit Name – Changing Lives Together</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Nonprofit Name – Official site. Learn our mission, impact, and how you can get involved." />
-  <link rel="stylesheet" href="assets/styles.css" />
+<meta charset="UTF-8">
+<title>Nonprofit Name – Changing Lives Together</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* ---------- GLOBAL RESET ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #ffffff;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* ---------- COLOR SYSTEM ---------- */
+:root {
+  --primary: #0b6efd;
+  --primary-dark: #084298;
+  --accent: #f4b41a;
+  --bg: #f7f7f9;
+  --muted: #6c757d;
+  --radius: 8px;
+  --max-width: 1100px;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  padding: 1rem 1.5rem;
+  color: white;
+}
+.nav {
+  max-width: var(--max-width);
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.brand-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: white;
+  object-fit: cover;
+}
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+}
+.nav-links a {
+  color: #e9f2ff;
+  font-weight: 500;
+  text-decoration: none;
+}
+.nav-cta {
+  background: var(--accent);
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  color: #222;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 3rem 1.5rem;
+}
+.hero-inner {
+  max-width: var(--max-width);
+  margin: auto;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+}
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+.hero-subtitle {
+  margin: 1rem 0;
+  color: #e0ecff;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.btn-primary, .btn-outline {
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #222;
+}
+.btn-outline {
+  border: 2px solid white;
+  color: white;
+}
+.hero-card {
+  background: rgba(255,255,255,0.1);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- SECTIONS ---------- */
+.section {
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.section-lead {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- GRID ---------- */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem;
+}
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid #e5e7eb;
+}
+
+/* ---------- IMPACT GRID ---------- */
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1rem;
+}
+.impact-item {
+  background: white;
+  padding: 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+.impact-item strong {
+  font-size: 1.4rem;
+  color: var(--primary-dark);
+}
+
+/* ---------- STORY ---------- */
+.story {
+  background: white;
+  padding: 1.5rem;
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius);
+}
+
+/* ---------- CTA BANNER ---------- */
+.cta-banner {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid #e5e7eb;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1.5rem;
+}
+.cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: #111827;
+  color: #d1d5db;
+  padding: 2rem 1.5rem;
+}
+.footer-inner {
+  max-width: var(--max-width);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2rem;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+}
+.social-links a {
+  display: block;
+  color: #d1d5db;
+  margin-bottom: 0.4rem;
+  text-decoration: none;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .hero-inner, .cta-banner, .footer-inner {
+    grid-template-columns: 1fr;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .impact-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media (max-width: 500px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="nav">
     <div class="brand">
-      <img src="assets/logo.png" class="brand-logo" alt="Nonprofit Logo">
+      <img src="assets/logo.png" class="brand-logo">
       <div>
         <div>Nonprofit Name</div>
         <small>Your mission tagline here</small>
@@ -33,220 +256,123 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div>
       <h1 class="hero-title">Together, we’re changing what’s possible.</h1>
       <p class="hero-subtitle">
-        Nonprofit Name is a registered nonprofit organization dedicated to <strong>your core mission here</strong> in
-        <strong>regions you serve</strong>. Join us in bringing lasting change to communities in need.
+        Nonprofit Name is dedicated to <strong>your mission here</strong>. Join us in bringing lasting change.
       </p>
 
       <div class="hero-actions">
         <a href="#donate" class="btn-primary">Donate now</a>
         <a href="#volunteer" class="btn-outline">Become a volunteer</a>
       </div>
-
-      <p class="hero-meta">
-        Your gifts are tax-deductible where applicable. Transparency reports and impact updates are shared regularly with our supporters.
-      </p>
     </div>
 
     <aside class="hero-card">
-      <div class="hero-card-title">This year at a glance</div>
-      <p style="font-size:0.9rem;color:#e0ecff;">
-        Replace these numbers with your real impact metrics to quickly show visitors why your work matters.
-      </p>
-
-      <div class="hero-stat-grid">
-        <div class="hero-stat">
-          <strong>25,000+</strong>
-          Lives reached through our programs
-        </div>
-        <div class="hero-stat">
-          <strong>18</strong>
-          Communities served across 3 regions
-        </div>
-        <div class="hero-stat">
-          <strong>92%</strong>
-          Of funds go directly to programs
-        </div>
-        <div class="hero-stat">
-          <strong>10 yrs</strong>
-          Of trusted nonprofit service
-        </div>
-      </div>
+      <h3>This year at a glance</h3>
+      <p>Replace these numbers with your real impact metrics.</p>
+      <ul>
+        <li><strong>25,000+</strong> Lives reached</li>
+        <li><strong>18</strong> Communities served</li>
+        <li><strong>92%</strong> Funds to programs</li>
+        <li><strong>10 yrs</strong> Trusted service</li>
+      </ul>
     </aside>
   </div>
 </section>
 
-<!-- MAIN CONTENT -->
 <main>
 
-  <!-- MISSION -->
-  <section id="mission" class="section">
-    <div class="section-header">
-      <div class="section-kicker">Our mission</div>
-      <h2 class="section-title">A simple mission with a deep impact.</h2>
-      <p class="section-lead">
-        Use this section to clearly state who you serve, what you do, and why it matters.
-      </p>
+<section id="mission" class="section">
+  <h2 class="section-title">A simple mission with a deep impact.</h2>
+  <p class="section-lead">State who you serve, what you do, and why it matters.</p>
+
+  <div class="grid-3">
+    <div class="card"><h3>Who we serve</h3><p>Describe your beneficiaries.</p></div>
+    <div class="card"><h3>What we do</h3><p>Explain your programs.</p></div>
+    <div class="card"><h3>How we work</h3><p>Describe your approach.</p></div>
+  </div>
+</section>
+
+<section id="programs" class="section">
+  <h2 class="section-title">Programs that turn generosity into change.</h2>
+  <p class="section-lead">Highlight your key programs.</p>
+
+  <div class="grid-3">
+    <div class="card"><h3>Program One</h3><p>Description.</p></div>
+    <div class="card"><h3>Program Two</h3><p>Description.</p></div>
+    <div class="card"><h3>Program Three</h3><p>Description.</p></div>
+  </div>
+</section>
+
+<section id="impact" class="section">
+  <h2 class="section-title">Your support is already making a difference.</h2>
+  <p class="section-lead">Replace these with real metrics.</p>
+
+  <div class="impact-grid">
+    <div class="impact-item"><strong>25K+</strong><span>People reached</span></div>
+    <div class="impact-item"><strong>120+</strong><span>Local partners</span></div>
+    <div class="impact-item"><strong>92%</strong><span>Funds to programs</span></div>
+    <div class="impact-item"><strong>3</strong><span>Regions served</span></div>
+  </div>
+</section>
+
+<section id="stories" class="section">
+  <h2 class="section-title">Real people. Real stories of hope.</h2>
+  <article class="story">
+    <p>“Replace this with a real story from someone impacted by your work.”</p>
+    <small>— Name, Location</small>
+  </article>
+</section>
+
+<section id="donate" class="section">
+  <div class="cta-banner">
+    <div>
+      <h2>Every gift moves the mission forward.</h2>
+      <p>Explain how donations are used.</p>
     </div>
-
-    <div class="grid-3">
-      <div class="card">
-        <h3>Who we serve</h3>
-        <p>Describe the communities or causes at the heart of your work.</p>
-      </div>
-      <div class="card">
-        <h3>What we do</h3>
-        <p>Summarize your core programs or interventions in plain language.</p>
-      </div>
-      <div class="card">
-        <h3>How we work</h3>
-        <p>Highlight your approach: partnerships, long-term relationships, evidence-based programs.</p>
-      </div>
+    <div class="cta-actions">
+      <a href="#" class="btn-primary">Give securely online</a>
+      <a href="contact.html" class="btn-outline">Other ways to give</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROGRAMS -->
-  <section id="programs" class="section">
-    <div class="section-header">
-      <div class="section-kicker">Programs</div>
-      <h2 class="section-title">Programs that turn generosity into change.</h2>
-      <p class="section-lead">
-        Feature 3–6 key programs or focus areas.
-      </p>
-    </div>
+<section id="volunteer" class="section">
+  <h2 class="section-title">More than a donation—join the community.</h2>
 
-    <div class="grid-3">
-      <div class="card">
-        <h3>Program One</h3>
-        <p>Short description of your first program.</p>
-      </div>
-      <div class="card">
-        <h3>Program Two</h3>
-        <p>Short description of your second program.</p>
-      </div>
-      <div class="card">
-        <h3>Program Three</h3>
-        <p>Short description of your third program.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- IMPACT -->
-  <section id="impact" class="section">
-    <div class="section-header">
-      <div class="section-kicker">Impact</div>
-      <h2 class="section-title">Your support is already making a difference.</h2>
-      <p class="section-lead">Replace these sample metrics with your real data.</p>
-    </div>
-
-    <div class="impact-grid">
-      <div class="impact-item">
-        <strong>25K+</strong>
-        <span>People reached in the last 12 months</span>
-      </div>
-      <div class="impact-item">
-        <strong>120+</strong>
-        <span>Local partners and community leaders</span>
-      </div>
-      <div class="impact-item">
-        <strong>92%</strong>
-        <span>Of every gift goes to programs</span>
-      </div>
-      <div class="impact-item">
-        <strong>3</strong>
-        <span>Regions of focus worldwide</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- STORIES -->
-  <section id="stories" class="section">
-    <div class="section-header">
-      <div class="section-kicker">Stories</div>
-      <h2 class="section-title">Real people. Real stories of hope.</h2>
-      <p class="section-lead">Use this space for a short story or testimonial.</p>
-    </div>
-
-    <article class="story">
-      <p class="story-quote">
-        “Replace this quote with a real story from someone impacted by your work.”
-      </p>
-      <p class="story-meta">— Name, Role or Location</p>
-    </article>
-  </section>
-
-  <!-- DONATE CTA -->
-  <section id="donate" class="section">
-    <div class="cta-banner">
-      <div>
-        <h2>Every gift moves the mission forward.</h2>
-        <p>
-          Explain briefly how donations are used and link to your secure donation platform.
-        </p>
-      </div>
-
-      <div class="cta-actions">
-        <a href="https://your-donation-platform.example" class="btn-primary">Give securely online</a>
-        <a href="contact.html" class="btn-outline">Other ways to give</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- VOLUNTEER -->
-  <section id="volunteer" class="section">
-    <div class="section-header">
-      <div class="section-kicker">Get involved</div>
-      <h2 class="section-title">More than a donation—join the community.</h2>
-      <p class="section-lead">Invite people to volunteer, advocate, or partner.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="card">
-        <h3>Volunteer locally</h3>
-        <p>Describe local volunteer opportunities.</p>
-      </div>
-      <div class="card">
-        <h3>Partner with us</h3>
-        <p>Explain how organizations can collaborate.</p>
-      </div>
-      <div class="card">
-        <h3>Share the story</h3>
-        <p>Encourage supporters to share your mission.</p>
-      </div>
-    </div>
-  </section>
+  <div class="grid-3">
+    <div class="card"><h3>Volunteer locally</h3><p>Describe opportunities.</p></div>
+    <div class="card"><h3>Partner with us</h3><p>Explain partnerships.</p></div>
+    <div class="card"><h3>Share the story</h3><p>Encourage supporters.</p></div>
+  </div>
+</section>
 
 </main>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
 
-    <div class="footer-left">
+    <div>
       <h3>Nonprofit Name</h3>
-      <p>123 Hope Street<br>
-      Calgary, AB, Canada</p>
-
+      <p>123 Hope Street<br>Calgary, AB, Canada</p>
       <p><strong>Email:</strong> info@yournonprofit.org<br>
       <strong>Phone:</strong> +1 (403) 555‑1234</p>
     </div>
 
-    <div class="footer-center">
+    <div>
       <h4>Connect with us</h4>
       <div class="social-links">
-        <a href="https://facebook.com/yourpage" target="_blank">Facebook</a>
-        <a href="https://twitter.com/yourpage" target="_blank">Twitter</a>
-        <a href="https://instagram.com/yourpage" target="_blank">Instagram</a>
-        <a href="https://linkedin.com/company/yourpage" target="_blank">LinkedIn</a>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
       </div>
     </div>
 
-    <div class="footer-right">
+    <div>
       <h4>Quick links</h4>
       <a href="contact.html">Contact Us</a><br>
       <a href="#">Financials</a><br>
